@@ -9,7 +9,7 @@ Stack *init_stack(int capacity) {
         exit(1);
     }
 
-    stack->arr = (Element *) malloc(capacity * sizeof(Element));
+    stack->arr = (double *) malloc(capacity * sizeof(double));
     if (stack == NULL) {
         printf("Error allocating memory!\n");
         free(stack);
@@ -43,29 +43,17 @@ int isFull(Stack *stack) {
     return 0;
 }
 
-void pushNumber(Stack *stack, int number) {
+void push(Stack *stack, double value) {
     if (isFull(stack)) {
         printf("Stack is full!\n");
         return;
     }
 
     stack->top++;
-    stack->arr[stack->top].type = INT;
-    stack->arr[stack->top].value.intValue = number;
+    stack->arr[stack->top] = value;
 }
 
-void pushSymbol(Stack *stack, char symbol) {
-    if (isFull(stack)) {
-        printf("Stack is full!\n");
-        return;
-    }
-
-    stack->top++;
-    stack->arr[stack->top].type = CHAR;
-    stack->arr[stack->top].value.charValue = symbol;
-}
-
-Element pop(Stack *stack) {
+double pop(Stack *stack) {
     if (isEmpty(stack)) {
         printf("Stack is empty!\n");
         exit(1);

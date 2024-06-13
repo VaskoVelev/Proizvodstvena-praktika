@@ -1,23 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef enum {
-    INT,
-    CHAR
-} Type;
-
-typedef union {
-    int intValue;
-    char charValue;
-} Value;
-
 typedef struct {
-    Type type;
-    Value value;
-} Element;
-
-typedef struct {
-    Element *arr;
+    double *arr;
     int top;
     int capacity;
 } Stack;
@@ -28,9 +13,7 @@ void freeStack(Stack *stack);
 int isEmpty(Stack *stack);
 int isFull(Stack *stack);
 
-void pushNumber(Stack *stack, int number);
-void pushSymbol(Stack *stack, char symbol);
-
-Element pop(Stack *stack);
+void push(Stack *stack, double value);
+double pop(Stack *stack);
 
 #endif

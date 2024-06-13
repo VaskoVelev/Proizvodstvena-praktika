@@ -1,21 +1,25 @@
+#include "calculator.h"
 #include "stack.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    /*Stack *stack = init_stack(5);
+    Stack *stack = init_stack(MAX_CAPACITY);
 
-    push(stack, 10);
-    push(stack, 20);
-    push(stack, 30);
-
-    for (int i = stack->top; i >= 0; i--) {
-        printf("%lf\n", stack->arr[i]);
+    char *expression = (char *) malloc(MAX_LENGTH * sizeof(char));
+    if (expression == NULL) {
+        printf("Error allocating memory!\n");
+        exit(1);
     }
-    
-    double e = pop(stack);
-    printf("Popped element: %d\n", e);
 
-    freeStack(stack);*/
+    enterExpression(expression);
+
+    if (isValid(expression)) {
+        tokeniseExpression(expression, stack);
+    }
+
+    freeStack(stack);
+    free(expression);
 
     return 0;
 }

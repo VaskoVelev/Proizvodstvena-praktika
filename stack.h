@@ -1,6 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 
+#define MAX_CAPACITY 100
+
 typedef struct {
     double *arr;
     int top;

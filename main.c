@@ -1,5 +1,5 @@
-#include "calculator.h"
 #include "stack.h"
+#include "calculator.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,6 +17,9 @@ int main() {
     if (isValid(expression)) {
         tokeniseExpression(expression, stack);
     }
+
+    double result = getResult(stack);
+    printf("%.4f\n", result);
 
     freeStack(stack);
     free(expression);

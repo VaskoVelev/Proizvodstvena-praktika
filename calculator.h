@@ -1,3 +1,4 @@
+#include "stack.h"
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
@@ -7,14 +8,18 @@
 #define E 2.7182
 
 void removeNewLine(char *str);
+int isDigit(char character);
+double getResult(Stack *stack);
+
 void enterExpression(char *expression);
-int isValid(char *expression);
-int isDigit(char *character);
+int isExpressionValid(char *expression);
 void tokeniseExpression(char *expression, Stack *stack);
 
 void add(Stack *stack);
 void subtract(Stack *stack);
 void multiply(Stack *stack);
 void divide(Stack *stack);
+void natural_log(Stack *stack);
+void logarithm(Stack *stack);
 
 #endif

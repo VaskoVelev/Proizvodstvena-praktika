@@ -1,8 +1,9 @@
-#include "calculator.h"
 #include "stack.h"
+#include "calculator.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 void removeNewLine(char *str) {
     char *newLine = strchr(str, '\n');
@@ -11,18 +12,7 @@ void removeNewLine(char *str) {
     }
 }
 
-void enterExpression(char *expression) {
-    printf("Enter the mathematical expression:\n");
-    fgets(expression, MAX_LENGTH, stdin);
-    removeNewLine(expression);
-}
-
-int isValid(char *expression) {
-
-    return 1;
-}
-
-int isDigit(char *character) {
+int isDigit(char character) {
     if (character >= '0' && character <= '9') {
         return 1;
     }
@@ -30,20 +20,18 @@ int isDigit(char *character) {
     return 0;
 }
 
-void add(Stack *stack) {
-    
+double getResult(Stack *stack) {
+    return stack->arr[stack->top];
 }
 
-void subtract(Stack *stack) {
-
+void enterExpression(char *expression) {
+    printf("Enter the mathematical expression:\n");
+    fgets(expression, MAX_LENGTH, stdin);
+    removeNewLine(expression);
 }
 
-void multiply(Stack *stack) {
-
-}
-
-void divide(Stack *stack) {
-
+int isExpressionValid(char *expression) {
+    //tva e za teb
 }
 
 void tokeniseExpression(char *expression, Stack *stack) {
@@ -60,7 +48,7 @@ void tokeniseExpression(char *expression, Stack *stack) {
 
         if (isDigit(*current)) {
             char *remainingExpression;
-            double number = strtod(current, remainingExpression);
+            double number = strtod(current, &remainingExpression);
             push(stack, number);
 
             current = remainingExpression;
@@ -74,7 +62,7 @@ void tokeniseExpression(char *expression, Stack *stack) {
             natural_log(stack);
             current += 2;
         } else if (strncmp(current, "log", 3) == 0) {
-            log(stack);
+            logarithm(stack);
             current += 3;
         } else {
             switch (*current) {
@@ -90,12 +78,33 @@ void tokeniseExpression(char *expression, Stack *stack) {
                 case '/':
                     divide(stack);
                     break;
-                default:
-                    printf("Invalid token!\n");
-                    break;
             }
 
             current++;
         }
     }
+}
+
+void add(Stack *stack) {
+    //tva e za teb
+}
+
+void subtract(Stack *stack) {
+    //tva e za teb
+}
+
+void multiply(Stack *stack) {
+    //tva e za teb
+}
+
+void divide(Stack *stack) {
+    //tva e za teb
+}
+
+void natural_log(Stack *stack) {
+    //tva e za teb
+}
+
+void logarithm(Stack *stack) {
+    //tva e za teb
 }

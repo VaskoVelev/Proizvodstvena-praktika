@@ -36,10 +36,6 @@ int isLog(char *str) {
     return strncmp(str, "log", 3) == 0;
 }
 
-double getResult(Stack *stack) {
-    return stack->arr[stack->top];
-}
-
 void enterExpression(char *expression) {
     printf("Enter the mathematical expression:\n");
     fgets(expression, MAX_LENGTH, stdin);
@@ -209,3 +205,7 @@ void logarithm(Stack *stack) {
     double result = log(op1) / log(op2);
     push(stack, result);
 }
+
+double getResult(Stack *stack) {
+    return stack->arr[stack->top];
+};

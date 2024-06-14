@@ -10,11 +10,11 @@
 void removeNewLine(char *str);
 int isDigit(char character);
 int isValidOperation(char character);
+
 int isPI(char *str);
 int isE(char *str);
 int isIn(char *str);
 int isLog(char *str);
-double getResult(Stack *stack);
 
 void enterExpression(char *expression);
 int isValidExpression(char *expression);
@@ -26,5 +26,7 @@ void multiply(Stack *stack);
 void divide(Stack *stack);
 void natural_log(Stack *stack);
 void logarithm(Stack *stack);
+
+double getResult(Stack *stack);
 
 #endif

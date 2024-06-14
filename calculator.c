@@ -131,11 +131,11 @@ void logarithm(Stack *stack) {
     double op2 = pop(stack);
     double op1 = pop(stack);
     if (op2 <= 0) {
-        printf("Error - logarithm is undefined for non-positive base!\n");
+        printf("Error: logarithm is undefined for non-positive base!\n");
         exit(1);
     }
     if (op1 <= 0) {
-        printf("Error - logarithm is undefined for non-positive argument!\n");
+        printf("Error: logarithm is undefined for non-positive argument!\n");
         exit(1);
     }
     double result = log(op1) / log(op2);

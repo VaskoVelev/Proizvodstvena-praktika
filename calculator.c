@@ -86,25 +86,58 @@ void tokeniseExpression(char *expression, Stack *stack) {
 }
 
 void add(Stack *stack) {
-    //tva e za teb
+    double op2 = pop(stack);
+    double op1 = pop(stack);
+    double result = op1 + op2;
+    push(stack, result);
 }
-
+ 
 void subtract(Stack *stack) {
-    //tva e za teb
+    double op2 = pop(stack);
+    double op1 = pop(stack);
+    double result = op1 - op2;
+    push(stack, result);
 }
-
+ 
 void multiply(Stack *stack) {
-    //tva e za teb
+    double op2 = pop(stack);
+    double op1 = pop(stack);
+    double result = op1 * op2;
+    push(stack, result);
 }
-
+ 
 void divide(Stack *stack) {
-    //tva e za teb
+    double op2 = pop(stack);
+    double op1 = pop(stack);
+    if (op2 == 0) {
+        printf("Error: cannot divide by zero!\n");
+        exit(1);
+    }
+    double result = op1 / op2;
+    push(stack, result);
 }
-
+ 
 void natural_log(Stack *stack) {
-    //tva e za teb
+    double op1 = pop(stack);
+    if (op1 <= 0) {
+        printf("Error: natural logarithm is undefined for non-positive values!\n");
+        exit(1);
+    }
+    double result = log(op1);
+    push(stack, result);
 }
-
+ 
 void logarithm(Stack *stack) {
-    //tva e za teb
+    double op2 = pop(stack);
+    double op1 = pop(stack);
+    if (op2 <= 0) {
+        printf("Error - logarithm is undefined for non-positive base!\n");
+        exit(1);
+    }
+    if (op1 <= 0) {
+        printf("Error - logarithm is undefined for non-positive argument!\n");
+        exit(1);
+    }
+    double result = log(op1) / log(op2);
+    push(stack, result);
 }

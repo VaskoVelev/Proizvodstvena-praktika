@@ -14,12 +14,11 @@ int main() {
 
     enterExpression(expression);
 
-    if (isValid(expression)) {
+    if (isValidExpression(expression)) {
         tokeniseExpression(expression, stack);
+        double result = getResult(stack);
+        printf("%.4f\n", result);
     }
-
-    double result = getResult(stack);
-    printf("%.4f\n", result);
 
     freeStack(stack);
     free(expression);

@@ -13,11 +13,27 @@ void removeNewLine(char *str) {
 }
 
 int isDigit(char character) {
-    if (character >= '0' && character <= '9') {
-        return 1;
-    }
+    return (character >= '0' && character <= '9');
+}
 
-    return 0;
+int isValidOperation(char character) {
+    return (character == '+' || character == '-' || character == '*' || character == '/');
+}
+
+int isPI(char *str) {
+    return strncmp(str, "pi", 2) == 0;
+}
+
+int isE(char *str) {
+    return strncmp(str, "e", 1) == 0;
+}
+
+int isIn(char *str) {
+    return strncmp(str, "In", 2) == 0;
+}
+
+int isLog(char *str) {
+    return strncmp(str, "log", 3) == 0;
 }
 
 double getResult(Stack *stack) {
@@ -30,8 +46,60 @@ void enterExpression(char *expression) {
     removeNewLine(expression);
 }
 
-int isExpressionValid(char *expression) {
-    //tva e za teb
+int isValidExpression(char *expression) {
+    int numCount = 0;
+    int opCount = 0;
+ 
+    char *current = expression;
+    while(*current != '\0') {
+
+        if (*current == ' ') {
+            current++;
+            continue;
+        }
+ 
+        if (isDigit(*current)) {
+            numCount++;
+            while (isDigit(*current)) {
+                current++;
+            } 
+        } else if (isValidOperation(*current) || isPI(current) || isE(current) || isIn(current) || isLog(current)) {
+            if (isPI(current) || isE(current)) {
+                current += (isPI(current)) ? 2 : 1;
+            } else if (isIn(current)) {
+                if (numCount < 1) {
+                    printf("Error: not enough operands for ln operation!\n");
+                    return 0;
+                }
+                current += 2;
+            } else if (isLog(current)) {
+                if (numCount < 2) {
+                    printf("Error: not enough operands for log operation!\n");
+                    return 0;
+                }
+                numCount--;
+                current += 3;
+            } else {
+                opCount++;
+                if (numCount < 2) {
+                    printf("Error: not enough operands for binary operation!\n");
+                    return 0;
+                }
+                numCount--;
+                current++;
+            }
+        } else {
+            printf("Error: invalid character {%c}!\n", *current);
+            return 0;
+        }
+    }
+ 
+    if (numCount != 1) {
+        printf("Error: Invalid expression, unable to reach final result!\n");
+        return 0;
+    }
+    
+    return 1;
 }
 
 void tokeniseExpression(char *expression, Stack *stack) {
@@ -52,16 +120,16 @@ void tokeniseExpression(char *expression, Stack *stack) {
             push(stack, number);
 
             current = remainingExpression;
-        } else if (strncmp(current, "pi", 2) == 0) {
+        } else if (isPI(current)) {
             push(stack, PI);
             current += 2;
-        } else if (strncmp(current, "e", 1) == 0) {
+        } else if (isE(current)) {
             push(stack, E);
             current++;
-        } else if (strncmp(current, "In", 2) == 0) {
+        } else if (isIn(current)) {
             natural_log(stack);
             current += 2;
-        } else if (strncmp(current, "log", 3) == 0) {
+        } else if (isLog(current)) {
             logarithm(stack);
             current += 3;
         } else {

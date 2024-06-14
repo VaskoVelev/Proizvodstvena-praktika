@@ -9,10 +9,15 @@
 
 void removeNewLine(char *str);
 int isDigit(char character);
+int isValidOperation(char character);
+int isPI(char *str);
+int isE(char *str);
+int isIn(char *str);
+int isLog(char *str);
 double getResult(Stack *stack);
 
 void enterExpression(char *expression);
-int isExpressionValid(char *expression);
+int isValidExpression(char *expression);
 void tokeniseExpression(char *expression, Stack *stack);
 
 void add(Stack *stack);

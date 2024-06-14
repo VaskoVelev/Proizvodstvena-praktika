@@ -1,4 +1,4 @@
-gcc -c stack.c -o stack.o
+gcc -c utils/stack.c -o stack.o
 gcc -c calculator.c -o calculator.o
 gcc main.c stack.o calculator.o -o main.exe
 ./main.exe

@@ -54,15 +54,17 @@ int isValidExpression(char *expression) {
             continue;
         }
  
-        if (isDigit(*current)) {
+        if (isDigit(*current) || isPI(current) || isE(current)) {
             numCount++;
-            while (isDigit(*current)) {
-                current++;
-            } 
-        } else if (isValidOperation(*current) || isPI(current) || isE(current) || isIn(current) || isLog(current)) {
             if (isPI(current) || isE(current)) {
                 current += (isPI(current)) ? 2 : 1;
-            } else if (isIn(current)) {
+            } else {
+                while (isDigit(*current)) {
+                    current++;
+                }
+            }
+        } else if (isValidOperation(*current) || isIn(current) || isLog(current)) {
+            if (isIn(current)) {
                 if (numCount < 1) {
                     printf("Error: not enough operands for ln operation!\n");
                     return 0;

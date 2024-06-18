@@ -44,7 +44,6 @@ void enterExpression(char *expression) {
 
 int isValidExpression(char *expression) {
     int numCount = 0;
-    int opCount = 0;
  
     char *current = expression;
     while(*current != '\0') {
@@ -78,7 +77,6 @@ int isValidExpression(char *expression) {
                 numCount--;
                 current += 3;
             } else {
-                opCount++;
                 if (numCount < 2) {
                     printf("Error: not enough operands for binary operation!\n");
                     return 0;
